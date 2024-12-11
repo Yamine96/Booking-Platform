@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile/:id" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="bg" style="background-color: rgba(255, 255, 255, 0.308);" *ngIf="host">
+    <div class="ad-details-container">
+        <div class="top-section">
+            <div class="ad-detail">
+                <div class="media-container" nz-row>
+                    <div class="image1" nz-col nzSpan="8">
+                        <img class="profile" style="height: 130px; width: 200px; border-radius: 10px;" [src]="processedImage" alt="profile" />
+                    </div>
+                    <div class="video1" nz-col nzSpan="8" *ngIf="videoUrl">
+                        <video width="300" height="200" controls style="border-radius: 10px;">
+                            <source [src]="videoUrl" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
+                </div>
+                
+                
+                
+                <div nz-col nzSpan="16">
+                    <h2 style="cursor: pointer; color: #108ee9;">
+                        {{ host.type }}
+                    </h2>
+                    <h5>
+                        <b>Description :</b> {{ host.description }}
+                    </h5>
+                    <h5>
+                        <b>Location :</b> {{ host.location }}
+                    </h5>
+                    <h5>
+                        <b>Price :</b> {{ host.price }}$
+                    </h5>
+                </div>
+            </div>
+            <div class="dashboard-filter" style="margin-right: 140px; margin-top: 50px;">
+                    <form [formGroup]="validateForm">
+                        <div class="filter-grid">
+                            <div class="filter-select-dropdown filter-fields-width">
+                                <div style="display: flex; gap: 20px;"> 
+                                    <nz-form-item style="flex: 1;">
+                                        <nz-form-label [nzSpan]="0" nzFor="fromDate">From Date</nz-form-label>
+                                        <nz-form-control [nzSpan]="0">
+                                            <nz-date-picker formControlName="fromDate" style="width: 100%;"
+                                                name="fromDate" nzPlaceHolder="From Date" [nzFormat]="dateFormat" id="fromDate">
+                                            </nz-date-picker>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                
+                                    <nz-form-item style="flex: 1;">
+                                        <nz-form-label [nzSpan]="0" nzFor="toDate">To Date</nz-form-label>
+                                        <nz-form-control [nzSpan]="0">
+                                            <nz-date-picker formControlName="toDate" style="width: 100%;"
+                                                name="toDate" nzPlaceHolder="To Date" [nzFormat]="dateFormat" id="toDate">
+                                            </nz-date-picker>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                
+                            </div>
+
+                            <div class="filter-select-dropdown filter-fields-width">
+                                <button class="filterBtn" style="margin-left: 45px;" nz-button nzType="primary"
+                                     (click)="bookAHost(validateForm.value)">Book Now</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+            
+        </div>
+        <div class="review-section">
+            <div class="review-card" *ngFor="let rev of review">
+                <nz-card [nzBordered]="false" nzTitle="{{ rev.userName }}">
+                    <p>
+                        Review: <strong>{{ rev.review }}</strong>
+                    </p>
+                    <p>
+                        Review:
+                        <strong><nz-rate disabled [ngModel]="rev.rating"></nz-rate> </strong>
+                    </p>
+                    <p>
+                        Posted on:
+                        <strong>{{ rev.reviewDate | date : "dd/MM/yyyy" }}</strong>
+                    </p>
+                </nz-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

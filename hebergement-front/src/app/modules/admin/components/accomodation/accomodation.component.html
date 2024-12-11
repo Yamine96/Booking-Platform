@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Navigation Menu</title>
+
+    <!-- Icon Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="container" style="background-color: white;">
+
+        <input type="checkbox" id="click">
+        <label for="click">
+            <i class='menu-btn bx bx-menu'></i>
+            <i class='close-btn bx bx-x-circle'></i>
+        </label>
+
+        <div class="sidenav">
+            <div class="logo">
+                <h2>Booking</h2>
+            </div>
+
+            <div class="search_bar">
+                <form action="#">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="menu_text">
+                <p>Menu</p>
+            </div>
+
+            <div class="icon_items">
+                <ul>
+                    <li (click)="goToDashboard()">
+                        <i class='bx bxs-star'></i> 
+                        <a>Reviews</a>
+                    </li>
+                    <li (click)="goToUser()">
+                        <i class='bx bxs-user-circle'></i>
+                        <a>User</a>
+                    </li>
+                    <li class="active" (click)="goToAccomodation()">
+                        <i class='bx bxs-shopping-bag'></i>
+                        <a>Accomodation</a>
+                    </li>
+                    <li (click)="goToAddHost()">
+                        <i class='bx bx-plus bigger-plus'></i>
+                        <a>Add host</a>
+                    </li>
+                    <li (click)="goToMessage()">
+                        <i class='bx bxs-message-dots'></i>
+                        <a>Message</a>
+                    </li>
+                    
+                    <li (click)="goToBookings()">
+                        <i class='bx bxs-hotel'></i>
+                        <a>Bookings</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group' ></i>
+                        <a href="#">Group</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-help-circle' ></i>
+                        <a href="#">Help</a>
+                    </li>
+                    <li (click)="goToLogout()">
+                        <i class='bx bx-log-in'></i>
+                        <a>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-list">
+            <div style="padding-top: 10px;"></div>
+        
+            <div style="margin-top: 10px;" class="child" *ngFor="let host of hosts">
+                <div nz-row>
+                    <div nz-col nzSpan="8">
+                        <img class="profile" style="height: 130px; width: 200px; border-radius: 10px;" [src]="host.processedImg" alt="profile" />
+                    </div>
+                    <div nz-col nzSpan="16">
+                        <h2 style="cursor: pointer; color: rgb(68, 68, 76);">{{host.type}}</h2>
+                        <p style="color: black;">{{host.description}}</p>
+                        <br>
+                        <h5 style="color: black;">Location :{{host.location}}</h5>
+                        <hr>
+                        <h5 style="color: black;">Price : <b>${{host.price}}</b></h5>
+                        <hr>
+                        <div style="float: right;">
+                            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                              routerLink="/admin/host/{{host.id}}">Update</button>
+                            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                              (click)="deleteHost(host.id)" nzDanger>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</div>
+        
+</body>
+</html>

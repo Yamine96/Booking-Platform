@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="tooplate-red">Boo</span><span class="tooplate-green">king</span></a>
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mr-5">
+                    <a class="nav-link click-scroll" routerLink="">Home</a>
+                </li>
+                <li class="nav-item mr-5">
+                  <a class="nav-link click-scroll" routerLink="/login" routerLinkActive="active">Login</a>
+                </li>
+                <li class="nav-item mr-5">
+                  <a class="nav-link click-scroll" routerLink="/register" >Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+
+<div class="container-fluid h-100 p-0" style="background-image: url(/assets/images/slideshow/image1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;">
+    <div class="row no-gutters h-100">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+                <div class="card shadow p-4 animate__animated animate__fadeIn" style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.8); border-radius: 15px;">
+                    <div nz-row class="imgDiv mb-3">
+                        <div nz-col nzSpan="24">
+                            <h1 class="text-center text-blue">sign in</h1>
+                        </div>
+                    </div>
+                    <form nz-form [formGroup]="loginForm">
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback nzErrorTip="Please enter your email !">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="text" nz-input placeholder="Email" formControlName="email" class="form-control" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback nzErrorTip="Please enter your password !">
+                                <nz-input-group nzPrefixIcon="lock">
+                                    <input type="password" nz-input placeholder="Password" formControlName="password" class="form-control" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <button nz-button class="btn btn-primary w-100 mb-3" [nzType]="'primary'" (click)="login()">Login</button>
+                        <div class="text-center">
+                            Or <a routerLink="/register">register now!</a>
+                        </div>
+                    </form>
+                </div>
+            </nz-spin>
+        </div>
+    </div>
+</div>

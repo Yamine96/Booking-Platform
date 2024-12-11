@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<section class="contact-section" id="section_5" style="margin-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-4">
+                <h2>Add Money</h2>
+            </div>
+        </div>
+
+        <nz-spin [nzSpinning]="isSpinning">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <form [formGroup]="validateForm">
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="cash" class="form-label fw-bold">Cash :</label>
+                                    <input type="text" name="cash" id="cash" class="form-control" formControlName="cash" placeholder="Enter cash" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button (click)="addMoney(validateForm.value)" class="btn btn-primary" routerLink="/customer/my_bookings">
+                                Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nz-spin>
+    </div>
+</section>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+

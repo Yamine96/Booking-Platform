@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list" routerLink="/customer/profile">Profile</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" routerLink="/customer/dashboard">Home</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" routerLink="/customer/my_bookings">My Bookings</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" routerLink="/customer/contact">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            <form nz-form [formGroup]="updateForm">
+                            <div class="card-body media align-items-center">
+                                <i class="bi bi-person-circle" style="font-size: 60px; color: #6c757d; margin-bottom: 10px;"><span style="margin-left: 10px;">{{ loggedUser }}</span></i>
+                            </div>
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-control mb-1">{{ emailLogger }}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control mb-1" formControlName="ville" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control mb-1" formControlName="tel" />
+                                </div>
+                            </div>
+                            <div class="text-right mt-3">
+                                <button type="button" class="btn btn-primary" (click)="updateProfile()">Change</button>&nbsp;
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

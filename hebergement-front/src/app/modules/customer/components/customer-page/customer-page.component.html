@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<form nz-form [formGroup]="validateForm" (submit)="searchHostByType()"
+     style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
+     <input nz-input placeholder="Enter service to search" nzSize="large" style="width: 20%;"
+     formControlName="service" />
+
+     <button nz-button nzSize="large" nzType="primary" style="margin-left: 15px;"
+     [disabled]="validateForm.invalid">Search</button>
+</form>
+
+<div class="bg" style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <div class="child" *ngFor="let host of hosts" style="flex: 0 1 calc(33.33% - 10px); max-width: calc(33.33% - 10px);">
+        <div nz-row style="display: flex; align-items: center; margin-bottom: 10px;">
+            <div nz-col nzSpan="6">
+              <img class="profile" style="height: 100px; width: 150px; border-radius: 10px;" [src]="host.processedImg" alt="profile" />
+            </div>
+            <div nz-col nzSpan="18" style="padding-left: 40px;">
+                <br> <!-- Added padding for spacing -->
+              <h2 style="font-size: 16px; cursor: pointer; color: #108ee9;">{{host.type}}</h2>
+              <br>
+              <p style="font-size: 14px; color: black;">{{host.description}}</p>
+              <h2 style="font-size: 14px; color: black;">{{host.location}}</h2>
+              <h5 style="font-size: 14px; color: black;">Price: <b>${{host.price}}</b></h5>
+            </div>
+          
+            
+          <hr>
+          <div style="float: right;">
+            <button style="margin-left: 10px; color: black;" nzSize="small" nz-button nzType="primary" routerLink="/customer/book/{{host.id}}" nzDanger>View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+

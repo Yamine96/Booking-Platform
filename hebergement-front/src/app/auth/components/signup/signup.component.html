@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="tooplate-red">Boo</span><span class="tooplate-green">king</span></a>
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mr-5">
+                    <a class="nav-link click-scroll" routerLink="">Home</a>
+                </li>
+                <li class="nav-item mr-5">
+                  <a class="nav-link click-scroll" routerLink="/login" routerLinkActive="active">Login</a>
+                </li>
+                <li class="nav-item mr-5">
+                  <a class="nav-link click-scroll" routerLink="/register" routerLinkActive="active">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+
+<div class="container-fluid h-100 p-0" style="background-image: url(/assets/images/slideshow/image2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;">
+    <div class="row no-gutters h-100">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+                <div class="card shadow p-4 animate__animated animate__fadeIn" style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.8); border-radius: 15px;">
+                    <div nz-row class="imgDiv mb-3">
+                        <div nz-col nzSpan="24">
+                            <h1 class="text-center">sign up</h1>
+                        </div>
+                    </div>
+                    <form nz-form [formGroup]="signupForm">
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback nzErrorTip="Email non valide !">
+                                <nz-input-group nzPrefixIcon="mail">
+                                    <input type="email" nz-input placeholder="E-mail" id="email" formControlName="email" class="form-control" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="errorPass">
+                                <nz-input-group nzPrefixIcon="lock">
+                                    <input type="password" nz-input placeholder="Password" id="password" formControlName="password" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #errorPass let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Password is required!</ng-container>
+                                    <ng-container *ngIf="control.hasError('pattern')">Password should contain 8 Characters, 1 lowercase, 1 uppercase, 1 number and 1 special character!</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="errorTp1">
+                                <nz-input-group nzPrefixIcon="lock">
+                                    <input type="password" nz-input placeholder="Confirm Password" id="checkPassword" formControlName="checkPassword" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #errorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Please confirm your password</ng-container>
+                                    <ng-container *ngIf="control.hasError('confirm')">Please check again...</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="usererrorTp1">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="text" nz-input placeholder="Name" id="username" formControlName="name" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #usererrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Please enter your username!</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="usererrorTp1">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="text" nz-input placeholder="Ville" id="ville" formControlName="ville" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #usererrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Please enter ville!</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="usererrorTp1">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="number" nz-input placeholder="Age" id="age" formControlName="age" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #usererrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Please enter your age!</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item class="mb-4">
+                            <nz-form-control nzHasFeedback [nzErrorTip]="usererrorTp1">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="number" nz-input placeholder="Tel" id="tel" formControlName="tel" class="form-control" />
+                                </nz-input-group>
+                                <ng-template #usererrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">Please enter your Tel number!</ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <button nz-button class="btn btn-primary w-100 mb-3" [nzType]="'primary'" (click)="register()">Register</button>
+                        <div class="text-center">
+                            or <a routerLink="/login">login now!</a>
+                        </div>
+                    </form>
+                </div>
+            </nz-spin>
+        </div>
+    </div>
+</div>

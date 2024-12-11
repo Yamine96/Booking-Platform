@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Navigation Menu</title>
+
+    <!-- Icon Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div class="container">
+
+        <input type="checkbox" id="click">
+        <label for="click">
+            <i class='menu-btn bx bx-menu'></i>
+            <i class='close-btn bx bx-x-circle'></i>
+        </label>
+
+        <div class="sidenav">
+            <div class="logo">
+                <h2>Booking</h2>
+            </div>
+
+            <div class="search_bar">
+                <form action="#">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="menu_text">
+                <p>Menu</p>
+            </div>
+
+            <div class="icon_items">
+                <ul>
+                    <li (click)="goToDashboard()">
+                        <i class='bx bxs-star'></i> 
+                        <a>Reviews</a>
+                    </li>
+                    <li (click)="goToUser()">
+                        <i class='bx bxs-user-circle'></i>
+                        <a>User</a>
+                    </li>
+                    <li (click)="goToAccomodation()">
+                        <i class='bx bxs-shopping-bag'></i>
+                        <a>Accomodation</a>
+                    </li>
+                    <li class="active" (click)="goToAddHost()">
+                        <i class='bx bx-plus bigger-plus'></i>
+                        <a>Add host</a>
+                    </li>
+                    <li (click)="goToMessage()">
+                        <i class='bx bxs-message-dots'></i>
+                        <a>Message</a>
+                    </li>
+                    
+                    <li (click)="goToBookings()">
+                        <i class='bx bxs-hotel'></i>
+                        <a>Bookings</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group' ></i>
+                        <a href="#">Group</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-help-circle' ></i>
+                        <a href="#">Help</a>
+                    </li>
+                    <li (click)="goToLogout()">
+                        <i class='bx bx-log-in'></i>
+                        <a>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+<div class="content my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+        <div style="margin-top: 50px;">
+            <nz-spin [nzSpinning]="isSpinning" nzSize="'large'" nzTip="Working...">
+                <div class="parent">
+                    <div class="child">
+                        <div nz-row class="imgDiv">
+                            <h2 class="decorated-title">Add Accomodation</h2>
+                        </div>
+                        <form nz-form [formGroup]="postHostForm">
+                            <div nz-row>
+                                <div class="media-upload-container" nz-row>
+                                    <div nz-col [nzMd]="12" [nzSm]="12" [nzXs]="12">
+                                        <div class="profile-badge">
+                                            <h5>Image</h5>
+                                            <input type="file" nz-button nz-type="primary" id="upload_profile_image"
+                                                accept="image/x-png,image/gif,image/jpeg" (change)="onImageFileSelected($event)" />
+                                            <button nz-button nzShape="circle"></button>
+                                        </div>
+                                    </div>
+                                
+                                    <div nz-col [nzMd]="12" [nzSm]="12" [nzXs]="12">
+                                        <nz-form-item>
+                                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is required!">
+                                                <h5>Video</h5>
+                                                <input type="file" nz-button nz-type="primary" id="upload_profile_video"
+                                                    accept="video/*" (change)="onVideoFileSelected($event)" />
+                                                <label for="upload_profile_video"></label>
+                                            </nz-form-control>
+                                        </nz-form-item>
+                                    </div>
+                                </div>
+                                
+                                <br><br>
+    
+                                <div nz-col nzSpan="24">
+                                    <nz-form-item>
+                                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is required!">
+                                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select the type you want"
+                                                formControlName="type">
+                                                <nz-option *ngFor="let type of listOfTypes" nzLabel="{{ type }}"
+                                                     nzValue="{{ type }}"></nz-option>
+                                            </nz-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <br><br><br>
+                                <div nz-col nzSpan="24">
+                                    <nz-form-item>
+                                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is required!">
+                                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select the location you want"
+                                                formControlName="location">
+                                                <nz-option *ngFor="let location of listOfLocations" nzLabel="{{ location }}"
+                                                     nzValue="{{ location }}"></nz-option>
+                                            </nz-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <br><br><br>
+                                <div nz-col nzSpan="24">
+                                    <nz-form-item>
+                                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is required!">
+                                            <textarea rows="1" nz-input placeholder="Description" formControlName="description"></textarea>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <br><br><br>
+                                <div nz-col nzSpan="24">
+                                    <nz-form-item>
+                                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is required!">
+                                            <input nz-input placeholder="Price" formControlName="price" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <br>
+    
+                            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="postHost()">
+                                Post Host
+                            </button>
+                        </form>
+                    </div>
+                </div> 
+            </nz-spin>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+        
+</body>
+</html>

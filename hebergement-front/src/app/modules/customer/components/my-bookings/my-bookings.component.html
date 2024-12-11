@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div style="background-color: white;">
+    <div class="breadcrumb">
+        <a href="#">Home</a>
+        <span style="color: black;">&gt;</span>
+        <a href="#">My Bookings <i class="bi bi-house-door icon-spacing bigger-icon"></i></a>
+    </div>
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <div class="container" style="max-width: 1200px; margin: auto;">
+        <nz-table #basicTable [nzData]="bookings" [nzPageSize]="20" [nzShowPagination]="'false'" class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="font-weight: bolder; color: black;">From</th>
+                    <th style="color: black;">To</th>
+                    <th style="color: black;">Days</th>
+                    <th style="color: black;">Price</th>
+                    <th style="color: black;">Status</th>
+                    <th style="color: black;">Action</th>
+                    <th style="color: black;">Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let booking of bookings" [ngClass]="{
+                    'table-success': booking.bookHostStatus === 'APPROVED',
+                    'table-danger': booking.bookHostStatus === 'REJECTED',
+                    'table-warning': booking.bookHostStatus === 'PENDING'
+                }">
+                    <td>{{ booking.fromDate | date: 'MMM d, y' }}</td>
+                    <td>{{ booking.toDate | date: 'MMM d, y' }}</td>
+                    <td>{{ booking.days }}</td>
+                    <td>{{ booking.price | currency }}</td>
+                    <td>
+                        <strong [ngStyle]="{'color': booking.bookHostStatus === 'APPROVED' ? 'green' : booking.bookHostStatus === 'REJECTED' ? 'red' : 'orange'}">
+                            {{ booking.bookHostStatus }}
+                        </strong>
+                    </td>
+                    <td>
+                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+                        routerLink="/customer/review/{{booking.id}}">Review</button>
+                    </td>
+                    <td>
+                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+                        routerLink="/customer/payment/{{booking.id}}">Pay Now</button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-spin>
+</div>
+
+
+
+
+</body>
+</html>

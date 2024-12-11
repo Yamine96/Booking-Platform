@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="background-color: white;">
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span style="color: black;">&gt;</span>
+            <a href="#">Messages <i class="bi bi-envelope icon-spacing bigger-icon"></i></a>
+        </div>
+        <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+            <div class="container" style="max-width: 1200px; margin: auto;">
+                <nz-table #basicTable [nzData]="contacts" [nzPageSize]="20" [nzShowPagination]="'false'" class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="font-weight: bolder; color: black;">User Name<i class="bi bi-person-circle icon-spacing bigger-icon"></i>
+                            </th>
+                            <th style="color: black;">Email</th>
+                            <th style="color: black;">Subject</th>
+                            <th style="color: black;">Message<i class="bi bi-chat icon-spacing bigger-icon"></i>
+                            </th>
+                            <th style="color: black;">
+                                Response
+                                <i class="bi bi-envelope-paper new-icon ms-1"></i>
+                            </th>
+                            
+                            <th style="color: black;">Delete contact<i class="bi bi-trash icon-spacing bigger-icon"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contact of contacts">
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.subject }}</td>
+                            <td><p>{{ contact.message }}</p></td>
+                            <td>{{ contact.response }}</td>
+                            <td>
+                                <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                                  (click)="deleteMessages(contact.id)" nzDanger class="delete-button">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </nz-spin>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

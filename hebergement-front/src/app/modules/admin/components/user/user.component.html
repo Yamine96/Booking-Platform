@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Navigation Menu</title>
+
+    <!-- Icon Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+
+        <input type="checkbox" id="click">
+        <label for="click">
+            <i class='menu-btn bx bx-menu'></i>
+            <i class='close-btn bx bx-x-circle'></i>
+        </label>
+
+        <div class="sidenav">
+            <div class="logo">
+                <h2>Booking</h2>
+            </div>
+
+            <div class="search_bar">
+                <form action="#">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="menu_text">
+                <p>Menu</p>
+            </div>
+
+            <div class="icon_items">
+                <ul>
+                    <li (click)="goToDashboard()">
+                        <i class='bx bxs-star'></i> 
+                        <a>Reviews</a>
+                    </li>
+                    <li class="active" (click)="goToUser()">
+                        <i class='bx bxs-user-circle'></i>
+                        <a>User</a>
+                    </li>
+                    <li (click)="goToAccomodation()">
+                        <i class='bx bxs-shopping-bag'></i>
+                        <a>Accomodation</a>
+                    </li>
+                    <li (click)="goToAddHost()">
+                        <i class='bx bx-plus bigger-plus'></i>
+                        <a>Add host</a>
+                    </li>
+                    <li (click)="goToMessage()">
+                        <i class='bx bxs-message-dots'></i>
+                        <a>Message</a>
+                    </li>
+                    
+                    <li (click)="goToBookings()">
+                        <i class='bx bxs-hotel'></i>
+                        <a>Bookings</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group' ></i>
+                        <a href="#">Group</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-help-circle' ></i>
+                        <a href="#">Help</a>
+                    </li>
+                    <li (click)="goToLogout()">
+                        <i class='bx bx-log-in'></i>
+                        <a>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content my-5">
+            <div style="background-color: white;">
+                <div class="breadcrumb">
+                    <a href="#">Home</a>
+                    <span style="color: black;">&gt;</span>
+                    <a href="#">Users<i class="bi bi-person icon-spacing bigger-icon"></i>
+                    </a>
+                </div>
+                <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+                    <div class="container" style="max-width: 2000px; margin: auto; padding-right: 20px;"> <!-- Added padding-right -->
+                        <nz-table 
+                            #basicTable 
+                            [nzData]="users" 
+                            [nzPageSize]="20" 
+                            [nzShowPagination]="'false'" 
+                            class="table table-striped table-hover" 
+                            style="width: 100%; max-width: 2000px; margin-left: auto;"> <!-- Added margin-left: auto -->
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="font-weight: bolder; color: black; width: 20%;">Id</th>
+                                    <th style="color: black; width: 40%;">User Name<i class="bi bi-envelope-fill icon-spacing bigger-icon"></i>
+                                    </th>
+                                    <th style="color: black; width: 60%;">Address</th>
+
+                                    <th style="color: black; width: 20%;">Age</th>
+                                    
+                                    <th style="color: black; width: 40%;">Phone<i class="bi bi-telephone-fill icon-spacing bigger-icon"></i>
+                                    </th>
+                                    <th style="color: black; width: 20%;">Role<i class="bi bi-person-fill icon-spacing bigger-icon"></i>
+                                    </th>
+                                    <th style="color: black; width: 20%;">Actions 
+                                        <i class="bi bi-trash icon-spacing bigger-icon"></i>
+                                    </th>
+                                    
+                                           
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <ng-container *ngFor="let user of users">
+                                <tr *ngIf="user.userRole === 'CUSTOMER'">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.name }}</td> 
+                                    <td>{{ user.ville }}</td>
+                                    <td>{{ user.age }}</td>
+                                    <td>{{ user.tel }}</td>
+                                    <td>{{ user.userRole }}</td>
+                                    <td>
+                                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                                            (click)="deleteUser(user.id)" nzDanger class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </nz-spin>
+            </div>
+        </div>
+        
+        
+        
+
+    </div>
+</body>
+</html>

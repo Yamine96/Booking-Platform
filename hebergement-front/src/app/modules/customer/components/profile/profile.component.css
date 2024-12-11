@@ -1,0 +1,106 @@
+.navbar {
+    background-color: #343a40; 
+    transition: background-color 0.3s; 
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5rem; 
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    padding: 15px 20px; 
+    transition: color 0.3s; 
+}
+
+.nav-link:hover {
+    color: #ffd700 !important; 
+    text-decoration: underline; 
+}
+
+.navbar-toggler {
+    border: none; 
+}
+
+.navbar-toggler-icon {
+    background-color: #ffd700; 
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px; 
+    }
+}
+
+.nav-link i {
+    margin-right: 10px; 
+}
+
+
+
+.nav-item {
+    margin-right: 20px; 
+}
+
+
+.nav-item.contact {
+    margin-right: 40px; 
+}
+
+
+
+body {
+    background-color: #f8f9fa;
+}
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.account-settings-links .list-group-item {
+    border: none;
+    border-radius: 0;
+}
+.account-settings-links .list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+}
+.switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.switcher-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.switcher-indicator {
+    width: 40px;
+    height: 20px;
+    background: #ddd;
+    border-radius: 20px;
+    transition: background 0.3s;
+    margin-right: 10px;
+}
+.switcher-input:checked + .switcher-indicator {
+    background: #007bff;
+}
+.switcher-yes, .switcher-no {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+.switcher-yes {
+    transform: translateX(20px);
+    background: #fff;
+    border-radius: 20px;
+}
+.switcher-no {
+    background: #fff;
+    border-radius: 20px;
+}

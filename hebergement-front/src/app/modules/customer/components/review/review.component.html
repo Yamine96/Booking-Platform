@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Book Now !</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/my_bookings" routerLinkActive="active">My Booking</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li class="nav-item contact">
+                    <a class="nav-link" routerLink="/customer/messages" routerLinkActive="active">Message Recieved</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer/profile" routerLinkActive="active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="goToLogout()" routerLinkActive="active"><i class="bi bi-person"></i>{{ loggedUser }} (Logout)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div style="background-color: white;">
+<div class="parent">
+    <div class="child">
+
+        <div nz-row class="imgDiv">
+            <h2 style="margin-left: 200px; color: teal;">Post Review</h2>
+        </div>
+        <br>
+
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="giveReview()">
+
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is Required!">
+                        <textarea rows="5" nz-input placeholder="Write a Review"
+                          formControlName="review"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div nz-row>
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This input is Required">
+                            <nz-rate formControlName="rating"></nz-rate>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+
+            <button nz-button class="login-form-button  login-form-margin" [nzType]="'primary'">Post</button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
